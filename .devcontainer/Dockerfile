@@ -8,7 +8,7 @@ RUN apt-get update && \
         openssh-client && \
     rm -rf /var/lib/apt/lists/*
 
-WORKDIR /workspaces/app
+WORKDIR /workspaces/nest-boilerplate
 
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
