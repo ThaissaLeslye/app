@@ -1,0 +1,31 @@
+{
+    "name": "Node.js & PostgreSQL",
+    "dockerComposeFile": "docker-compose.dev.yml",
+    "service": "app",
+    "workspaceFolder": "/workspaces/app",
+    "remoteUser": "node",
+    "updateRemoteUserUID": true,
+    "containerUser": "node",
+    "postCreateCommand": "test -f package.json && npm ci --ignore-scripts || echo 'Workspace vazio. Aguardando scaffolding do NestJS.'",
+    "forwardPorts": [3000],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "editor.formatOnSave": true,
+                "editor.defaultFormatter": "esbenp.prettier-vscode",
+                "eslint.validate": ["javascript", "typescript"],
+                "eslint.run": "onType"
+            },
+            "extensions": [
+                "vsciot-vscode.gitflow",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "firsttris.vscode-jest-runner"
+            ]
+        }
+    },
+    "mounts": [
+        "source=app-history,target=/home/node/.vscode-server/data/User/History,type=volume",
+        "source=${localWorkspaceFolderBasename}-node_modules,target=/workspaces/app/node_modules,type=volume"
+    ]
+}
